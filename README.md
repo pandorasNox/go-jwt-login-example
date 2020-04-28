@@ -1,9 +1,12 @@
 # golang-jwt-login-example
 An golang jwt login example
 
-## How to start
+## Milestones finished
 
-1. JWT how to use? What communication steps are required?
-2. Mock and test, to validate functionality.
-3. Integrate into Webserver.
+1. Implement Server skeleton
+2. JWT how to use? What communication steps are required?
+4. Mock and test, to validate functionality.
 
+## Milestones upcomming
+
+5. Integrate into Webserver.

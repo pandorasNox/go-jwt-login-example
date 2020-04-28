@@ -13,8 +13,6 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// import "github.com/sirupsen/logrus"
-
 func main() {
 	addr := flag.String("addr", ":443", "address to bind to")
 	dryRun := flag.Bool("dry-run", false, "enables dry-run mode, always returning success AdmissionReview")
