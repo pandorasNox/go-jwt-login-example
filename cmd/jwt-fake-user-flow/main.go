@@ -10,7 +10,7 @@ import (
 
 func main() {
 	http.HandleFunc("/jwt", handleJWT)
-	log.Printf("server stopped: %s", http.ListenAndServe(":80", nil))
+	log.Printf("server stopped: %s", http.ListenAndServe(":8080", nil))
 }
 
 // client makes first call to server and gets new identity & identityToken (registration)
@@ -33,11 +33,21 @@ func generateToken() (string, error) {
 	// Create a new token object, specifying signing method and the claims
 	// you would like it to contain.
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"foo":     "bar",
-		"nbf":     time.Date(2015, 10, 10, 12, 0, 0, 0, time.UTC).Unix(),
-		"sub":     "123456",
-		"email":   "user@fake.io", //edge case securety wise, what is best practice???
-		"allowed": "info,other",
+
+		// these 4 are recommendet to be always there
+		// @see https://auth0.com/blog/a-look-at-the-latest-draft-for-jwt-bcp/
+		// under "Validate All Possible Claims"
+		"sub": "123456",
+		"iss": "app.route.jwt",
+		"aud": "",
+		"exp": "",
+
+		// ???
+		"nbf": time.Date(2015, 10, 10, 12, 0, 0, 0, time.UTC).Unix(),
+
+		//custom stuff ???
+		"foo":  "bar",
+		"role": "admin",
 	})
 
 	// Sign and get the complete encoded token as a string using the secret
